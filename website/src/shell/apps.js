@@ -13,6 +13,7 @@ export const APPS = {
     description: 'Full documentation for PAI: setup, apps, security model, and hardware compatibility.',
     icon: '/icons/docs.svg',
     default: { w: 900, h: 640 },
+    url: 'https://docs.pai.direct',
   },
   flash: {
     id: 'flash',
@@ -214,7 +215,8 @@ export const APPS = {
 }
 
 export function appUrl(id, params) {
-  const base = `/apps/${id}`
+  const app = APPS[id]
+  const base = app?.url ?? `/apps/${id}`
   if (!params || Object.keys(params).length === 0) return base
   return `${base}?${new URLSearchParams(params).toString()}`
 }
